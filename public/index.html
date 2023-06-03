@@ -14,15 +14,40 @@
         <div id = "logo_container">
             <img id = "logo" src="/Users/sera/Desktop/spar3325-tracker/public/assets/logo.png" alt="Film Log Logo">
         </div>
-        <button id = "add_button" onclick="showSearchBar()">
+        <button id = "add_button" onclick="showAddMan()">
             <img src="/Users/sera/Desktop/spar3325-tracker/public/assets/add.png" alt = "add button">
         </button>
     </header>
 
     <!-- Pop Up Search Bar -->
+    <!-- 
     <div id = "autoComplete_wrapper" class="hidden">
         <input type = "text" placeholder = "Search Title To Add A Film">
     </div>
+    -->
+
+    <!-- Add Manually Pop Up Window -->
+    
+    <div id = "addMan_container" class="hidden">
+        <div class = "popup">
+            <h2>Add New</h2>
+            <form>
+                <label for="title">Film Title</label>
+                <input type="text" id="title" required>
+
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" required>
+
+                <label for="duration">Duration</label>
+                <input type="number" id="duration" placeholder="Minutes" required>
+
+                <div class="button_container">
+                    <button type = "submit" class="save_button">Save</button>
+                    <button type="button" class="cancel_button" onclick="hidePopup()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div> 
 
 <script src="script.js"></script>
 </body>
