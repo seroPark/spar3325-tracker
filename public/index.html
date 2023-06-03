@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
     <link href = "style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -19,9 +21,9 @@
         </button>
     </header>
 
-    <!-- Pop Up Search Bar -->
-    <div id = "search-container" class="hidden">
-        <input type = "text" placeholder = "Search Title To Add A Film">
+    <!-- Pop Up Search Bar with Auto Complete -->
+    <div id = "autoComplete_wrapper" class="hidden">
+        <input id = "autoComplete" type = "text" tabindex = "1">
     </div>
 
 <script src="script.js"></script>

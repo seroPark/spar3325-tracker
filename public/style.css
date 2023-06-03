@@ -44,20 +44,25 @@ header {
     background-color: #c5c5c5;
 }
 
-#search-container {
-    position: fixed;
+#autoComplete_wrapper {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 15px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 
     align-items: center;
     justify-content: center;
 }
 
+#autoComplete {
+    border: none;
+}
+
+/*.hidden : class = "hidden" */
 .hidden {
     display: none;
 }
