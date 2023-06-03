@@ -14,7 +14,7 @@ header {
     /* black shadow with opacity of 10% */
 }
 
-#logo-container {
+#logo_container {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -25,14 +25,14 @@ header {
     height: auto;
 }
 
-#add-button {
+#add_button {
     cursor: pointer;
     border: 1.5px solid;
     border-radius: 8px;
     transition: background-color 0.3s;
 }
 
-#add-button img {
+#add_button img {
     width: 24px;
     height: auto;
     vertical-align: middle;
@@ -40,11 +40,11 @@ header {
     filter:saturate(0);
 }
 
-#add-button:hover {
+#add_button:hover {
     background-color: #c5c5c5;
 }
 
-#search-container {
+#autoComplete_wrapper {
     position: fixed;
     top: 50%;
     left: 50%;
