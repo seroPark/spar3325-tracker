@@ -68,6 +68,35 @@ header {
     border: none;
 }
 
+
+/*save and cancel button in pop up*/
+.button_container {
+    margin-top: 20px;
+    align-items: center;
+
+}
+#save_button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'League Spartan', sans-serif;
+}
+
+#cancel_button {
+    background-color: #f8f8f8;
+    color: black;
+    padding: 10px 20px;
+    border: black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'League Spartan', sans-serif;
+}
+
+
+
 /*.hidden : class = "hidden" */
 .hidden {
     display: none;
