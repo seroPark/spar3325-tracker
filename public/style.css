@@ -68,6 +68,26 @@ header {
     border: none;
 }
 
+#addMan_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    /* align-items: center;
+    justify-content: center; */
+}
+#addMan_container form  {
+    display: flex;
+    flex-direction: column;
+}
+
+#addMan_container input {
+    width: 100%;
+}
 
 /*save and cancel button in pop up*/
 .button_container {
@@ -86,7 +106,7 @@ header {
 }
 
 #cancel_button {
-    background-color: #f8f8f8;
+    background-color: #ffffff;
     color: black;
     padding: 10px 20px;
     border: black;
@@ -95,7 +115,33 @@ header {
     font-family: 'League Spartan', sans-serif;
 }
 
-
+.grid-container {
+    margin: 40px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .grid-item {
+    background-color: #ccc;
+    padding: 20px;
+    text-align: left;
+    aspect-ratio: 2/3;
+    border-radius: 10px;
+    font-size: 90%;
+  }
+  
+  @media (max-width: 600px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 601px) and (max-width: 900px) {
+    .grid-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
 
 /*.hidden : class = "hidden" */
 .hidden {
