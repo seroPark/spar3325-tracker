@@ -19,20 +19,55 @@
         <div id = "logo_container">
             <img id = "logo" src="/Users/sera/Desktop/spar3325-tracker/public/assets/logo.png" alt="Film Log Logo">
         </div>
-        <button id = "add_button" onclick="showSearchBar()">
+        <button id = "add_button" onclick="toggleSearchBar()">
             <img src="/Users/sera/Desktop/spar3325-tracker/public/assets/add.png" alt = "add button">
         </button>
     </header>
+
 
     <!-- Auto Complete Search Bar -->
     <div id = "autoComplete_container" class="hidden">
         <input id="autoComplete" type = "text" tabindex="1">
     </div>
 
+
+    <!-- Ask Confirm -->
+    <div id = "askConfirm_container" class="addMovie hidden">
+        <form>
+            <p>Are you sure you want to cancel?</p>
+            <div class="button_container">
+                <button type="submit" id="yes_button">Yes</button>
+                <button type="button" id="no_button" onclick="closeConfirm()">No</button>
+            </div>
+        </form>
+    </div>
+
+
+    
+
     <!-- Add Existing -->
+    <div id = "addExist_container" class="hidden addMovie">
+        <span>
+            <img src="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg" height = 300vh>
+        </span>
+        <form>
+            <span>
+                <h2>Title</h2>
+                <h6>Genre</h6>
+                <label for="rate" name="rate">User Rating</label>
+                <input type="number" id="comments">
+                <label for="comments" name="comments">Comments (Optional)</label>
+                <input type="text" id="comments">
+                <div class="button_container">
+                    <button type="submit" id="save_button">Save</button>
+                    <button type="button" id="cancel_button" onclick="askConfirm()">Cancel</button>
+                </div>
+            </span>
+        </form>
+    </div>
     
     <!-- Add Manually -->
-    <div id = "addMan_container" class="hidden">
+    <div id = "addMan_container" class="hidden addMovie">
         <h2>Add New</h2>
         <form>
             <label for="title" name="title">Film Title</label>
@@ -52,6 +87,16 @@
             </div>
         </form>
     </div>
+
+    <!-- Are you sure you want to cancel?  -->
+    <!-- <div id="askConfirm_container">
+        <p>Are you sure you want to cancel?</p>
+        <div class="button_container">
+            <button type="submit" id="yes_button">Yes</button>
+            <button type="button" id="no_button">No</button>
+        </div>
+    </div> -->
+
 
     <div class="grid-container">
         <div class="grid-item">
@@ -74,7 +119,11 @@
             <span class ="title">shimasu</span>
             <span class="rating">xxxxx</span>
         </div>
-      </div>
+    </div>
+
+
+
+    
 <script src="script.js"></script>
 </body>
 </html>

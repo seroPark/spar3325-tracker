@@ -1,27 +1,47 @@
-function showSearchBar() {
+
+function toggleSearchBar() {
     var searchContainer = document.getElementById("autoComplete_container");
     searchContainer.classList.toggle("hidden");
 
-// Add
-
     if (!autoComplete_container.classList.contains("hidden")){
-        document.addEventListener("click", handleOutsideClick);
+        document.addEventListener("click", hideSearchBar);
     } else {
-        document.removeEventListener("click", handleOutsideClick);
+        document.removeEventListener("click", hideSearchBar);
     }
 }
 
-function handleOutsideClick(event) {
+function askConfirm() {
+    var confirmWindow = document.getElementById("askConfirm_container");
+    //console.log("cancel?");
+    askConfirm_container.classList.remove("hidden");
+}
+
+function closeConfirm() {
+    var confirmWindow = document.getElementById("askConfirm_container");
+    console.log("no");
+    askConfirm_container.classList.add("hidden");
+}
+
+function hideSearchBar(event) {
     var searchContainer = document.getElementById("autoComplete_container");
-    var addButton = document.getElementById("add-button");
+    var addButton = document.getElementById("add_button");
     var targetElement = event.target;
   
     // Check if the click target is outside of the search container and search button
     if (!searchContainer.contains(targetElement) && !addButton.contains(targetElement)) {
       searchContainer.classList.add("hidden");
-      document.removeEventListener("click", handleOutsideClick);
+      document.removeEventListener("click", hideSearchBar);
     }
   }
+
+//   function askConfirm (event) {
+//     var cancelButton = document.getElementById("cancel_button");
+//     var addWindow = document.getElementsByClassName("addMovie");
+//     var clickedElement = event.target;
+
+//     if (!)
+//   }
+
 
 
   // The autoComplete.js Engine instance creator 
@@ -118,62 +138,29 @@ function handleOutsideClick(event) {
     };
 }
 
+// when movie is selected using the search bar, movie info is fetched and displayed on popup
+autoCompleteJS.input.addEventListener("selection", function(event) {
+    const feedback = event.detail;
+    autoCompleteJS.input.blur();
+    const selection = feedback.selection.value;
+    console.log(selection);
+    document.querySelector('#addExist_container img').src = `https://image.tmdb.org/t/p/original${selection['poster_path']}`;
+    document.querySelector('#addExist_container h2').textContent = `${selection['original_title']}`;
+    autoComplete_container.classList.add("hidden");
 
-  // user selection leads to add new movie thing
-//   autoCompleteJS.input.addEventListener("selection", function (event) {
-//     const feedback = event.detail;
-//     autoCompleteJS.input.blur();
-//     // Prepare User's Selected Value
-//     const selection = feedback.selection.value[feedback.selection.key];
-//     // Render selected choice to selection div
-//     document.querySelector(".selection").innerHTML = selection;
-//     // Replace Input value with the selected value
-//     autoCompleteJS.input.value = selection;
-//     // Console log autoComplete data feedback
-//     console.log(feedback);
-//   });
+    fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=5774e26c490bad12ed714f0dba3b87d3&language=en-US')
+    .then((response) => response.json())
+    .then((data) => {
+        var genre_string = '';
+        var genre = data['genres'];
+        // console.log(genre);
+        selection['genre_ids'].forEach(function(item) {
+            // console.log(item);
+            genre_string += genre.find(o => o.id === item)['name'] + '      ';
+        })
+        document.querySelector('#addExist_container h6').textContent = genre_string;
 
-
-const action = (action) => {
-    const title = document.querySelector("h1");
-    const mode = document.querySelector(".mode");
-    const selection = document.querySelector(".selection");
-    const footer = document.querySelector(".footer");
-  
-    if (action === "dim") {
-      title.style.opacity = 1;
-      mode.style.opacity = 1;
-      selection.style.opacity = 1;
-    } else {
-      title.style.opacity = 0.3;
-      mode.style.opacity = 0.2;
-      selection.style.opacity = 0.1;
-    }
-  };
-  
-  // Blur/unBlur page elements on input focus
-  ["focus", "blur"].forEach((eventType) => {
-    autoCompleteJS.input.addEventListener(eventType, () => {
-      // Blur page elements
-      if (eventType === "blur") {
-        action("dim");
-      } else if (eventType === "focus") {
-        // unBlur page elements
-        action("light");
-      }
+        
     });
-  });
-
-
-//Genre Keywords in Add Manually Section
-// $('input[name="input"').tagsinput({
-//     trimValue:true,
-//     comfirmKeys: [13, 44, 32],
-//     focusClass: 'my_focus_class'
-// });
-
-// $('.bootstrap_tagsinput input').on('focus', function(){
-//     $(this).closest('.bootstrap_tagsinput').addClass('has_focus');
-// }).on('blur', function(){
-//     $(this).closest('.bootstrap_tagsinput').removeClass('has_focus');
-// })
+    addExist_container.classList.remove("hidden");
+})
