@@ -1,3 +1,4 @@
+const overlay = document.getElementById("overlay");
 
 function toggleSearchBar() {
     var searchContainer = document.getElementById("autoComplete_container");
@@ -8,6 +9,8 @@ function toggleSearchBar() {
     } else {
         document.removeEventListener("click", hideSearchBar);
     }
+
+    // overlay.style.display = "block";
 }
 
 function askConfirm() {
@@ -34,13 +37,10 @@ function hideSearchBar(event) {
     }
   }
 
-//   function askConfirm (event) {
-//     var cancelButton = document.getElementById("cancel_button");
-//     var addWindow = document.getElementsByClassName("addMovie");
-//     var clickedElement = event.target;
-
-//     if (!)
-//   }
+function addManually() {
+    addMan_container.classList.remove("hidden");
+    autoComplete_container.classList.add("hidden");
+}
 
 
 
@@ -73,19 +73,7 @@ function hideSearchBar(event) {
           cache: true,
       },
       placeHolder: "Search Title to Add a Movie",
-      resultsList: {
-          element: (list, data) => {
-              // Create "No Results" message list element
-              const message = document.createElement("div");
-              // Add message text content
-              message.innerHTML = `<button id = "manualAdd">Add Manually</button>`;
-              // Add message list element to the list
-              list.prepend(message);
-          },
-          noResults: true,
-          maxResults: 10,
-          tabSelect: true
-      },
+      
       resultItem: {
           element: (item, data) => {
           // Modify Results Item Style
@@ -101,6 +89,21 @@ function hideSearchBar(event) {
           },
           highlight: true
       },
+
+      resultsList: {
+        element: (list, data) => {
+            // Create "No Results" message list element
+            const message = document.createElement("div");
+            // Add message text content
+            message.innerHTML = `<button id = "manualAdd" onclick="addManually()">Add Manually</button>`;
+            // Add message list element to the list
+            list.prepend(message);
+        },
+        noResults: true,
+        maxResults: 5,
+        tabSelect: true
+    },
+
       events: {
           input: {
           focus: () => {
@@ -138,14 +141,14 @@ function hideSearchBar(event) {
     };
 }
 
-// when movie is selected using the search bar, movie info is fetched and displayed on popup
+// when movie is selected using the search bar, movie info is fetched and displayed on popup, and saved into local storage
 autoCompleteJS.input.addEventListener("selection", function(event) {
     const feedback = event.detail;
     autoCompleteJS.input.blur();
     const selection = feedback.selection.value;
     console.log(selection);
     document.querySelector('#addExist_container img').src = `https://image.tmdb.org/t/p/original${selection['poster_path']}`;
-    document.querySelector('#addExist_container h2').textContent = `${selection['original_title']}`;
+    document.querySelector('#addExist_container h2').textContent = `${selection['title']}`;
     autoComplete_container.classList.add("hidden");
 
     fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=5774e26c490bad12ed714f0dba3b87d3&language=en-US')
@@ -159,6 +162,22 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
             genre_string += genre.find(o => o.id === item)['name'] + '      ';
         })
         document.querySelector('#addExist_container h6').textContent = genre_string;
+
+        // save into local storage
+
+        const title = selection.title; 
+        const poster = selection.poster_path;
+        const synopsis = selection.overview;
+        const released = selection.release_date;
+        // console.log(synopsis);
+
+        localStorage.setItem('title',JSON.stringify(title));
+        // localStorage.setItem('title',title);
+        localStorage.setItem('poster',JSON.stringify(poster));
+        localStorage.setItem('synopsis',JSON.stringify(synopsis));
+        localStorage.setItem('released',JSON.stringify(released));
+        console.log(localStorage.getItem('released'));
+
 
         
     });

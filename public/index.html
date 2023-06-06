@@ -5,14 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500&family=Unica+One&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500&family=Open+Sans:wght@300;400&family=Unica+One&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
     <link href = "style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+    <div class="overlay" id="overlay"></div>
+    
     <!-- top bar for logo and search -->
     <header>
         <!-- add logo -->
@@ -27,7 +32,7 @@
 
     <!-- Auto Complete Search Bar -->
     <div id = "autoComplete_container" class="hidden">
-        <input id="autoComplete" type = "text" tabindex="1">
+        <input id="autoComplete" type = "text" tabindex="1" autocomplete="off">
     </div>
 
 
@@ -67,7 +72,7 @@
     </div>
     
     <!-- Add Manually -->
-    <div id = "addMan_container" class="hidden addMovie">
+    <div id = "addMan_container" class="addMovie hidden">
         <h2>Add New</h2>
         <form>
             <label for="title" name="title">Film Title</label>
@@ -83,19 +88,10 @@
 
             <div class="button_container">
                 <button type="submit" id="save_button">Save</button>
-                <button type="button" id="cancel_button">Cancel</button>
+                <button type="button" id="cancel_button" onclick="askConfirm()">Cancel</button>
             </div>
         </form>
     </div>
-
-    <!-- Are you sure you want to cancel?  -->
-    <!-- <div id="askConfirm_container">
-        <p>Are you sure you want to cancel?</p>
-        <div class="button_container">
-            <button type="submit" id="yes_button">Yes</button>
-            <button type="button" id="no_button">No</button>
-        </div>
-    </div> -->
 
 
     <div class="grid-container">
