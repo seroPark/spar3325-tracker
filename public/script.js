@@ -79,10 +79,15 @@ function addManually() {
           // Modify Results Item Style
           item.style = "display: flex; justify-content: space-between; margin-left: 0;";
           // Modify Results Item Content
+          
+
           // text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
           item.innerHTML = `
-          <div style="width: 20%; padding-left: 10%; display: flex; align-items: center">
-              <span style="align-items: center; ">
+          <span>
+            <img src="https://image.tmdb.org/t/p/original/${data.value.poster_path}" width="100">
+          </span>
+          <div style="width: 60%; padding-left: 5%; display: flex; align-items: center">
+              <span style="align-items: left; ">
                   ${data.match}
               </span>
           </div>`;
@@ -141,6 +146,9 @@ function addManually() {
     };
 }
 
+let favMovies = JSON.parse(localStorage.getItem('favMovies'));
+// console.log(favMovies);
+
 // when movie is selected using the search bar, movie info is fetched and displayed on popup, and saved into local storage
 autoCompleteJS.input.addEventListener("selection", function(event) {
     const feedback = event.detail;
@@ -163,40 +171,66 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
         })
         document.querySelector('#addExist_container h6').textContent = genre_string;
 
-        // saving into local storage
-
-        // let favMovies = JSON.parse(localStorage.getItem('favMovies'));
-        // console.log(favMovies);
-
-        // if (favMovies == null) {
-        //     favMovies = [movie]
-        // } else {
-        //     if (favMovies.find(element =>element.title === movie.title)) {
-        //         console.log('Movie already exists')
-        // } else {
-        //     favMovies.push(movie)
-        //     }
-        // }
-
+        //saving into local storage
         const title = selection.title; 
         const poster = selection.poster_path;
         const synopsis = selection.overview;
         const released = selection.release_date;
-        // console.log(synopsis);
 
         //store as object
-        var movieInfo = {
+        var movie = {
             title: title,
             poster: poster,
             synopsis: synopsis,
-            released: released
+            released: released,
+            genre: genre_string
+        }
+        // console.log(JSON.stringify(movie));
+
+        if (favMovies == null) {
+            favMovies = [movie]
+        } else {
+            if (favMovies.find(element =>element.title === movie.title)) {
+                console.log('This movie is already saved')
+        } else {
+            favMovies.push(movie)
+            }
         }
 
-        localStorage.setItem('movieInfo',JSON.stringify(movieInfo));
-        console.log(localStorage.getItem('movieInfo'));
+        // console.log(favMovies);
+
+        //saving needs to be in this function(?) otherwise it gets refreshed everytime the page is refreshed
+        localStorage.setItem('favMovies',JSON.stringify(favMovies));
+        console.log(localStorage.getItem('favMovies'));
+        console.log(JSON.parse(localStorage.getItem('favMovies')));
+
+       
 
 
         
     });
     addExist_container.classList.remove("hidden");
 })
+
+// localStorage.setItem('favMovies',JSON.stringify(favMovies));
+// console.log(localStorage.getItem('favMovies'));
+// console.log(JSON.parse(localStorage.getItem('favMovies')));
+
+
+// updateFavourites();
+
+// function updateFavourites() {
+//     let list = document.querySelector('favMovies ul');
+//     list.innerHTML = "";
+
+//     let favMovies = JSON.parse(localStorage.getItem('favMovies'));
+
+//     if (favMovies !== null) {
+//         favMovies.forEach((title)=> {
+//             let listItem = document.createElement('li');
+//             listItem.innerHTML = `<strong>${movie.title}</strong>`
+//             list.appendChild(listItem);
+//         })
+//     }
+// }
+
