@@ -1,8 +1,12 @@
+h2 {
+    font-family: 'Unica One', cursive;
+}
+
 body {
 background-color: #f7f7f7;
 margin: 0;
 padding: 0;
-/* font-family: 'Unica One', cursive; */
+
 font-family: 'League Spartan', sans-serif;
 }
 
@@ -46,7 +50,7 @@ header {
     background-color: #c5c5c5;
 }
 
-#autoComplete_wrapper {
+#autoComplete_container {
     position: absolute;
     top: 50%;
     left: 50%;

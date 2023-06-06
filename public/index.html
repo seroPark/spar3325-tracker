@@ -24,9 +24,33 @@
         </button>
     </header>
 
-    <!-- Pop Up Search Bar -->
-    <div id = "autoComplete_wrapper" class="hidden">
+    <!-- Auto Complete Search Bar -->
+    <div id = "autoComplete_container" class="hidden">
         <input id="autoComplete" type = "text" tabindex="1">
+    </div>
+
+    <!-- Add Existing -->
+    
+    <!-- Add Manually -->
+    <div id = "addMan_container" >
+        <h2>Add New</h2>
+        <form>
+            <label for="title" name="title">Film Title</label>
+            <input type="text" id="title" required>
+
+            <!-- https://codepen.io/peiche/pen/dRqLbp -->
+            <label for="genre">Genre</label>
+            <input type="text" name="genre" class="genre_keywords" plcaeholder="Type in Keywords">
+            <small>Separate keywords with a comma, space bar, or enter key</small>
+
+            <label for="duration" name="duration">Duration</label>
+            <input type="number" id="duration" placeholder="Minutes" required>
+
+            <div class="button_container">
+                <button type="submit" id="save_button">Save</button>
+                <button type="button" id="cancel_button">Cancel</button>
+            </div>
+        </form>
     </div>
 
 <script src="script.js"></script>

@@ -1,10 +1,10 @@
 function showSearchBar() {
-    var searchContainer = document.getElementById("autoComplete_wrapper");
+    var searchContainer = document.getElementById("autoComplete_container");
     searchContainer.classList.toggle("hidden");
 
 // Add
 
-    if (!autoComplete_wrapper.classList.contains("hidden")){
+    if (!autoComplete_container.classList.contains("hidden")){
         document.addEventListener("click", handleOutsideClick);
     } else {
         document.removeEventListener("click", handleOutsideClick);
@@ -12,7 +12,7 @@ function showSearchBar() {
 }
 
 function handleOutsideClick(event) {
-    var searchContainer = document.getElementById("autoComplete_wrapper");
+    var searchContainer = document.getElementById("autoComplete_container");
     var addButton = document.getElementById("add-button");
     var targetElement = event.target;
   
@@ -163,3 +163,17 @@ const action = (action) => {
       }
     });
   });
+
+
+//Genre Keywords in Add Manually Section
+// $('input[name="input"').tagsinput({
+//     trimValue:true,
+//     comfirmKeys: [13, 44, 32],
+//     focusClass: 'my_focus_class'
+// });
+
+// $('.bootstrap_tagsinput input').on('focus', function(){
+//     $(this).closest('.bootstrap_tagsinput').addClass('has_focus');
+// }).on('blur', function(){
+//     $(this).closest('.bootstrap_tagsinput').removeClass('has_focus');
+// })
