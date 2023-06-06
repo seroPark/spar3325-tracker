@@ -24,7 +24,8 @@ function handleOutsideClick(event) {
   }
 
 
-  // The autoComplete.js Engine instance creator
+  // The autoComplete.js Engine instance creator 
+  // from https://tarekraafat.github.io/autoComplete.js/#/
   let searchBar = document.querySelector("#autoComplete");
   const autoCompleteJS = new autoComplete({
       data: {
@@ -51,7 +52,7 @@ function handleOutsideClick(event) {
           },
           cache: true,
       },
-      placeHolder: "Search for Movies!",
+      placeHolder: "Search Title to Add a Movie",
       resultsList: {
           element: (list, data) => {
               // Create "No Results" message list element
@@ -62,7 +63,7 @@ function handleOutsideClick(event) {
               list.prepend(message);
           },
           noResults: true,
-          maxResults: 15,
+          maxResults: 10,
           tabSelect: true
       },
       resultItem: {
@@ -70,18 +71,13 @@ function handleOutsideClick(event) {
           // Modify Results Item Style
           item.style = "display: flex; justify-content: space-between; margin-left: 0;";
           // Modify Results Item Content
+          // text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
           item.innerHTML = `
-          <span>
-              <img src="https://image.tmdb.org/t/p/original/${data.value.poster_path}" height="100">
-          </span>
-          <div style="width: 60%; padding-left: 10%; display: flex; align-items: center">
-              <span style="align-items: center; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+          <div style="width: 20%; padding-left: 10%; display: flex; align-items: center">
+              <span style="align-items: center; ">
                   ${data.match}
               </span>
-          </div>
-          <span style="display: flex; align-items: flex-end; font-size: 13px; font-weight: 100; text-transform: uppercase; color: rgba(0,0,0,.2);">
-              ${data.value.release_date ? data.value.release_date : 'xxxx-xx-xx'}
-          </span>`;
+          </div>`;
           },
           highlight: true
       },
