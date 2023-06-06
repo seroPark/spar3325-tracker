@@ -146,7 +146,7 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
     const feedback = event.detail;
     autoCompleteJS.input.blur();
     const selection = feedback.selection.value;
-    console.log(selection);
+    // console.log(selection);
     document.querySelector('#addExist_container img').src = `https://image.tmdb.org/t/p/original${selection['poster_path']}`;
     document.querySelector('#addExist_container h2').textContent = `${selection['title']}`;
     autoComplete_container.classList.add("hidden");
@@ -163,7 +163,20 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
         })
         document.querySelector('#addExist_container h6').textContent = genre_string;
 
-        // save into local storage
+        // saving into local storage
+
+        // let favMovies = JSON.parse(localStorage.getItem('favMovies'));
+        // console.log(favMovies);
+
+        // if (favMovies == null) {
+        //     favMovies = [movie]
+        // } else {
+        //     if (favMovies.find(element =>element.title === movie.title)) {
+        //         console.log('Movie already exists')
+        // } else {
+        //     favMovies.push(movie)
+        //     }
+        // }
 
         const title = selection.title; 
         const poster = selection.poster_path;
@@ -171,12 +184,16 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
         const released = selection.release_date;
         // console.log(synopsis);
 
-        localStorage.setItem('title',JSON.stringify(title));
-        // localStorage.setItem('title',title);
-        localStorage.setItem('poster',JSON.stringify(poster));
-        localStorage.setItem('synopsis',JSON.stringify(synopsis));
-        localStorage.setItem('released',JSON.stringify(released));
-        console.log(localStorage.getItem('released'));
+        //store as object
+        var movieInfo = {
+            title: title,
+            poster: poster,
+            synopsis: synopsis,
+            released: released
+        }
+
+        localStorage.setItem('movieInfo',JSON.stringify(movieInfo));
+        console.log(localStorage.getItem('movieInfo'));
 
 
         

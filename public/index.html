@@ -29,6 +29,32 @@
         </button>
     </header>
 
+    <div id="movieInfo_container" class="hidden">
+        <span>
+            <img src="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg" height = 300vh>
+        </span>
+        <span>
+            <!-- edit text html element in js script using stored data -->
+            <h2 id="title">Title</h2>
+            <h6 id="genre">Genre</h6>
+            <p id="rating">x x x x x</p>
+
+            <label id="released">released date</label>
+            <p id="released">released date</p>
+
+            <label id="added">added date</label>
+            <p id="added">added date</p>
+
+            <label id="synopsis">synopsis</label>
+            <p id="synopsis">synopsis</p>
+
+            <div class="button_container">
+                <button type="button" id="edit_button">Edit</button>
+                <button type="button" id="delete_button">Delete</button>
+            </div>
+        </span>
+    </div>
+
 
     <!-- Auto Complete Search Bar -->
     <div id = "autoComplete_container" class="hidden">
@@ -60,9 +86,7 @@
                 <h2>Title</h2>
                 <h6>Genre</h6>
                 <label for="rate" name="rate">User Rating</label>
-                <input type="number" id="comments">
-                <label for="comments" name="comments">Comments (Optional)</label>
-                <input type="text" id="comments">
+                <input type="number" id="rate">
                 <div class="button_container">
                     <button type="submit" id="save_button">Save</button>
                     <button type="button" id="cancel_button" onclick="askConfirm()">Cancel</button>
@@ -94,26 +118,13 @@
     </div>
 
 
-    <div class="grid-container">
-        <div class="grid-item">
-            <span class ="title">Harry Potter</span>
-            <span class="rating">xxxxx</span>
-        </div>
-        <div class="grid-item">
-            <span class ="title">Suzume</span>
-            <span class="rating">xxxxx</span>
-        </div>
-        <div class="grid-item">
-            <span class ="title">asobo</span>
-            <span class="rating">xxxxx</span>
-        </div>
-        <div class="grid-item">
-            <span class ="title">okaeshi</span>
-            <span class="rating">xxxxx</span>
-        </div>
-        <div class="grid-item">
-            <span class ="title">shimasu</span>
-            <span class="rating">xxxxx</span>
+    <div class="grid_container">
+        <div class="grid_item">
+            <!-- <img src ="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg"> -->
+            <div class="movieTile_content">
+                <h4 id="movieTile">Movie Title</h4>
+                <p id="movieTile">User Rating</p>
+            </div>
         </div>
     </div>
 
