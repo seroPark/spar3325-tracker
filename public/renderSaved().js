@@ -39,6 +39,7 @@ function renderSaved() {
             // document.getElementById('info_release').textContent = selectedMovie.released;
             document.getElementById('info_about').textContent = selectedMovie.synopsis;
             movieInfo_container.classList.remove("hidden");
+            overlay.style.display = "block";
         })
 
         

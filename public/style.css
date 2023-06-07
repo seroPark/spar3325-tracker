@@ -35,6 +35,23 @@ header {
 #autoComplete_container {
     margin: 0;
     z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #000000;
+    border-width: 3px;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    align-items: center;
+    justify-content: center;
+
+}
+
+#autoComplete {
+    border: none;
 }
 
 #logo_container {
@@ -113,23 +130,6 @@ header {
     font-family: 'League Spartan', sans-serif;
 }
 
-#autoComplete_container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    color: #000000;
-    border-width: 3px;
-    padding: 15px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-
-}
-
 #askConfirm_container {
     width: 350px;
     position: fixed;
@@ -139,7 +139,7 @@ header {
     background-color: #f5f5f5;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
     align-items: center;
     justify-content: center;
     display: flex;
@@ -154,10 +154,7 @@ header {
     font-size: 100%;
     padding:20px;
     border: none;
-}
-
-#autoComplete {
-    border: none;
+    z-index: 9000;
 }
 
 
@@ -195,7 +192,7 @@ header {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     /* align-items: center;
     justify-content: center; */
-    z-index: 1000;
+    z-index: 9995;
 }
 
 #addMan_container small {
@@ -256,6 +253,7 @@ header {
     /* align-items: center;
     justify-content: center; */
     display: flex;
+    z-index: 9955
 }
 
 #addExist_container img  {
