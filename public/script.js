@@ -1,16 +1,48 @@
 const overlay = document.getElementById("overlay");
 
+function renderSaved() {
+    document.querySelector('.grid_container').innerHTML = "";
+    let favMovies = JSON.parse(localStorage.getItem('favMovies'));
+    console.log(favMovies);
+    favMovies.forEach(function (object) {
+        let grid_item = document.createElement("div");
+        grid_item.classList.add("grid_item");
+        grid_item.id = favMovies.indexOf(object);
+        grid_item.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${object["poster"]})`;
+        let movieTile_content = document.createElement("div");
+        movieTile_content.classList.add("movieTile_content")
+        let movieTile =  document.createElement("h4");
+        movieTile.classList.add("movieTile");
+        movieTile.innerHTML = object["title"];
+        let movieTileRate =  document.createElement("p");
+        movieTileRate.classList.add("movieTile");
+        movieTileRate.innerHTML = object["rating"];
+        movieTile_content.appendChild(movieTile);
+        movieTile_content.appendChild(movieTileRate);
+        grid_item.appendChild(movieTile_content);
+    
+        let grid_container = document.querySelector(".grid_container");
+        grid_container.appendChild(grid_item);
+
+        //grid_item.addEventListener('click, function() {})
+    });
+}
+renderSaved();
+
+
 function toggleSearchBar() {
     var searchContainer = document.getElementById("autoComplete_container");
     searchContainer.classList.toggle("hidden");
 
     if (!autoComplete_container.classList.contains("hidden")){
         document.addEventListener("click", hideSearchBar);
+        overlay.style.display = "block";
     } else {
         document.removeEventListener("click", hideSearchBar);
+        overlay.style.display = "none";
     }
 
-    // overlay.style.display = "block";
+
 }
 
 function askConfirm() {
@@ -34,7 +66,10 @@ function hideSearchBar(event) {
     if (!searchContainer.contains(targetElement) && !addButton.contains(targetElement)) {
       searchContainer.classList.add("hidden");
       document.removeEventListener("click", hideSearchBar);
+      overlay.style.display = "none";
     }
+
+
   }
 
 function addManually() {
@@ -98,11 +133,13 @@ function addManually() {
       resultsList: {
         element: (list, data) => {
             // Create "No Results" message list element
-            const message = document.createElement("div");
-            // Add message text content
-            message.innerHTML = `<button id = "manualAdd" onclick="addManually()">Add Manually</button>`;
-            // Add message list element to the list
-            list.prepend(message);
+            if(!data.results.length) {
+                const message = document.document.createElement("div");
+                // Add message text content
+                message.innerHTML = `<button id = "manualAdd" onclick="addManually()">Add Manually</button>`;
+                // Add message list element to the list
+                list.appendChild(message);
+            }
         },
         noResults: true,
         maxResults: 5,
@@ -171,41 +208,58 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
         })
         document.querySelector('#addExist_container h6').textContent = genre_string;
 
-        //saving into local storage
+        // access html form element
+        const form = document.getElementById('addExistForm');
+
         const title = selection.title; 
         const poster = selection.poster_path;
         const synopsis = selection.overview;
         const released = selection.release_date;
 
-        //store as object
-        var movie = {
-            title: title,
-            poster: poster,
-            synopsis: synopsis,
-            released: released,
-            genre: genre_string
-        }
-        // console.log(JSON.stringify(movie));
 
-        if (favMovies == null) {
-            favMovies = [movie]
-        } else {
-            if (favMovies.find(element =>element.title === movie.title)) {
-                console.log('This movie is already saved')
-        } else {
-            favMovies.push(movie)
+        
+
+
+       // save manually
+        
+
+        // listen for form submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            //get input data
+            //store as object
+            const rating = document.getElementById('rate_exist').value;
+            console.log(rating);
+            var movie = {
+                title: title,
+                poster: poster,
+                synopsis: synopsis,
+                released: released,
+                genre: genre_string,
+                rating: rating
             }
-        }
+            // console.log(JSON.stringify(movie));
 
-        // console.log(favMovies);
+            if (favMovies == null) {
+                favMovies = [movie]
+            } else {
+                if (favMovies.find(element =>element.title === movie.title)) {
+                    console.log('This movie is already saved')
+            } else {
+                favMovies.push(movie)
+                }
+            }
 
-        //saving needs to be in this function(?) otherwise it gets refreshed everytime the page is refreshed
-        localStorage.setItem('favMovies',JSON.stringify(favMovies));
-        console.log(localStorage.getItem('favMovies'));
-        console.log(JSON.parse(localStorage.getItem('favMovies')));
+            //saving needs to be in this function(?) otherwise it gets refreshed everytime the page is refreshed
+            localStorage.setItem('favMovies',JSON.stringify(favMovies));
+            console.log(JSON.parse(localStorage.getItem('favMovies')));
 
-       
 
+            console.log('Form data saved to local storage');
+            renderSaved();
+            //console.log(formData);
+});
 
         
     });
@@ -227,10 +281,58 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
 
 //     if (favMovies !== null) {
 //         favMovies.forEach((title)=> {
-//             let listItem = document.createElement('li');
+//             let listItem = document.document.createElement('li');
 //             listItem.innerHTML = `<strong>${movie.title}</strong>`
 //             list.appendChild(listItem);
 //         })
 //     }
 // }
+
+
+// set max date as today
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth(); + 1;
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+    dd = '0' + dd;
+}
+
+if (mm < 10) {
+    mm = '0' + mm;
+}
+
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("release").setAttribute("max",today);
+
+// save manually
+// access html form element
+const form = document.getElementById('saveManaullyForm');
+
+// listen for form submission
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    //get input data
+    const title = document.getElementById('title').value;
+    const genre = document.getElementById('genres').value;
+
+    const formData = {
+        title: title,
+        genre: genre
+    }
+
+    localStorage.setItem('formData', JSON.stringify(formData));
+    
+    // reset input
+    document.getElementById('nameInput').value = '';
+    document.getElementById('messageInput').value = '';
+
+    console.log('Form data saved to local storage');
+    console.log(formData);
+});
+
+
+
 

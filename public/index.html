@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500&family=Open+Sans:wght@300;400&family=Unica+One&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.min.css">
+    <link href = "autocomplete.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
     <link href = "style.css" rel="stylesheet" type="text/css">
 </head>
@@ -81,12 +81,12 @@
         <span>
             <img src="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg" height = 300vh>
         </span>
-        <form>
+        <form id="addExistForm">
             <span>
                 <h2>Title</h2>
                 <h6>Genre</h6>
-                <label for="rate" name="rate">User Rating</label>
-                <input type="number" id="rate">
+                <label for="rate" name="rate_exist">User Rating</label>
+                <input type="number" id="rate_exist">
                 <div class="button_container">
                     <button type="submit" id="save_button">Save</button>
                     <button type="button" id="cancel_button" onclick="askConfirm()">Cancel</button>
@@ -98,20 +98,37 @@
     <!-- Add Manually -->
     <div id = "addMan_container" class="addMovie hidden">
         <h2>Add New</h2>
-        <form>
-            <label for="title" name="title">Film Title</label>
+        <form id="saveManuallyForm">
+            <label for="title" name="title" >Film Title</label>
             <input type="text" id="title" required>
 
             <!-- https://codepen.io/peiche/pen/dRqLbp -->
             <label for="genre">Genre</label>
             <input type="text" name="genre" class="genre_keywords" plcaeholder="Type in Keywords">
             <small>Separate keywords with a comma, space bar, or enter key</small>
-
-            <label for="duration" name="duration">Duration</label>
-            <input type="number" id="duration" placeholder="Minutes" required>
-
+            <label for="start">Release Date</label>
+            <input type="date" id="release" name="releaseDate" min="1980-01-01" max="2024-01-01">
+            <label for="rating">User Rating</label>
+            <select name="rating" id="rating">
+                <option value="0">0.0</option>
+                <option value="0.5">0.5</option>
+                <option value="1">1.0</option>
+                <option value="1.5">1.5</option>
+                <option value="2">2.0</option>
+                <option value="2.5">2.5</option>
+                <option value="3">3.0</option>
+                <option value="3.5">3.5</option>
+                <option value="4">4.0</option>
+                <option value="4.5">4.5</option>
+                <option value="5">5.0</option>
+            </select>
+            <label for="about">About</label>
+            <textarea id="movieAbout" rows="4" cols="30"></textarea>
+            <label for="poster" name="poster" >Poster Thumbnail URL</label>
+            <input type="text" id="poster" required>
+              
             <div class="button_container">
-                <button type="submit" id="save_button">Save</button>
+                <button type="submit" id="save_button" onclick="saveManually()">Save</button>
                 <button type="button" id="cancel_button" onclick="askConfirm()">Cancel</button>
             </div>
         </form>

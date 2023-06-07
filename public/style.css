@@ -184,10 +184,11 @@ header {
     transform: translate(-50%, -50%);
     background-color: #f7f7f7;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     /* align-items: center;
     justify-content: center; */
+    z-index: 1000;
 }
 
 #addMan_container small {
@@ -203,6 +204,16 @@ header {
 #addMan_container input {
     width: 60%;
     font-family: 'Open Sans', sans-serif;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color:#d3d3d3;
+    border-style: solid;
+}
+
+#addMan_container textarea {
+    border-radius: 5px;
+    border-width: 1px;
+    border-color:#d3d3d3;
 }
 
 #addMan_container form {
@@ -212,6 +223,17 @@ header {
 #addMan_container label {
     padding-top: 10px;
 }
+
+#rating {
+    display: flex;
+    background-color: white;
+    padding: 5px;
+    width: 60%;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color:#d3d3d3;
+}
+
 
 
 #addExist_container {
@@ -281,14 +303,15 @@ header {
   .grid_item {
     width:100%;
     height:100%;
-    background-image: url('https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg');
     background-size: cover;
     aspect-ratio: 2/3;
     border-radius: 10px;
+    display: flex;
   }
   
   .movieTile_content {
-    position: absolute;
+    position: relative;
+    align-self: flex-end;
     bottom: 0;
     left: 0;
     padding: 20px;
