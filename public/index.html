@@ -29,7 +29,9 @@
         </button>
     </header>
 
-    <div id="movieInfo_container" class="hidden">
+
+    <!-- MOVIE INFO TILE CONTAINER -->
+    <div id="movieInfo_container" class="hidden popup">
         <span>
             <img id="info_poster" src="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg" height = 200vh>
         </span>
@@ -56,14 +58,14 @@
     </div>
 
 
-    <!-- Auto Complete Search Bar -->
+    <!-- AUTO COMPLETE SEARCH BAR CONTAINER -->
     <div id = "autoComplete_container" class="hidden">
         <input id="autoComplete" type = "text" tabindex="1" autocomplete="off">
     </div>
 
 
-    <!-- Ask Confirm -->
-    <div id = "askConfirm_container" class="addMovie hidden">
+    <!-- ASK FOR CONFIRMATION WINDOW CONTAINER -->
+    <div id = "askConfirm_container" class="addMovie hidden popup">
         <form>
             <p>Are you sure you want to cancel?</p>
             <div class="button_container">
@@ -76,8 +78,8 @@
 
     
 
-    <!-- Add Existing -->
-    <div id = "addExist_container" class="hidden addMovie">
+    <!-- ADD AUTOMATICALLY WINDOW CONTAINER  -->
+    <div id = "addExist_container" class="hidden addMovie popup">
         <span>
             <img src="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg" height = 300vh>
         </span>
@@ -107,8 +109,8 @@
         </form>
     </div>
     
-    <!-- Add Manually -->
-    <div id = "addMan_container" class="addMovie hidden">
+    <!-- ADD MANUALLY WINDOW CONTAINER -->
+    <div id = "addMan_container" class="addMovie hidden popup">
         <h2>Add New</h2>
         <form id="saveManuallyForm">
             <label for="title" name="title" >Movie Title</label>
@@ -159,5 +161,6 @@
     
 <script src="script.js"></script>
 <script src="renderSaved().js"></script>
+<script src="autoComplete().js"></script>
 </body>
 </html>
