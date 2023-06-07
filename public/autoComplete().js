@@ -53,7 +53,7 @@
         element: (list, data) => {
             // Create "No Results" message list element
             if(!data.results.length) {
-                const message = document.document.createElement("div");
+                const message = document.createElement("div");
                 // Add message text content
                 message.innerHTML = `<button id = "manualAdd" onclick="addManually()">Add Manually</button>`;
                 // Add message list element to the list
@@ -132,7 +132,7 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
         const form = document.getElementById('addExistForm');
 
         const title = selection.title; 
-        const poster = selection.poster_path;
+        const poster = 'https://image.tmdb.org/t/p/original/' + selection.poster_path;
         const synopsis = selection.overview;
         const released = selection.release_date;
 
@@ -148,6 +148,7 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
                 title: title,
                 poster: poster,
                 synopsis: synopsis,
+                added: today,
                 released: released,
                 genre: genre_string,
                 rating: rating
@@ -169,6 +170,7 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
             console.log(JSON.parse(localStorage.getItem('favMovies')));
 
             renderSaved();
+            overlay.style.display = "none";
 
 });
 
