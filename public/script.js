@@ -24,7 +24,24 @@ function renderSaved() {
         let grid_container = document.querySelector(".grid_container");
         grid_container.appendChild(grid_item);
 
-        //grid_item.addEventListener('click, function() {})
+        grid_item.addEventListener('click',function() {
+            console.log(grid_item.id);
+            // console.log((favMovies[grid_item.id]));
+            const selectedMovie = favMovies[grid_item.id];
+            console.log(selectedMovie);
+            
+
+            document.getElementById('info_poster').src = `url(https://image.tmdb.org/t/p/original/${selectedMovie.poster})`;
+            document.getElementById('info_title').textContent = selectedMovie.title;
+            // console.log(document.getElementById('info_title').textContent);
+            document.getElementById('info_genre').textContent = selectedMovie.genre;
+            document.getElementById('info_rating').textContent = selectedMovie.rating;
+            // document.getElementById('info_release').textContent = selectedMovie.released;
+            document.getElementById('info_about').textContent = selectedMovie.synopsis;
+            movieInfo_container.classList.remove("hidden");
+        })
+
+        //grid_item.addEventListener('click', function() {})
     });
 }
 renderSaved();
@@ -77,7 +94,10 @@ function addManually() {
     autoComplete_container.classList.add("hidden");
 }
 
-
+function closePopUp() {
+    addMan_container.classList.add("hidden");
+    addExist_container.classList.add("hidden");
+}
 
   // The autoComplete.js Engine instance creator 
   // from https://tarekraafat.github.io/autoComplete.js/#/
@@ -184,7 +204,7 @@ function addManually() {
 }
 
 let favMovies = JSON.parse(localStorage.getItem('favMovies'));
-// console.log(favMovies);
+
 
 // when movie is selected using the search bar, movie info is fetched and displayed on popup, and saved into local storage
 autoCompleteJS.input.addEventListener("selection", function(event) {
@@ -216,13 +236,6 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
         const synopsis = selection.overview;
         const released = selection.release_date;
 
-
-        
-
-
-       // save manually
-        
-
         // listen for form submission
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -251,43 +264,18 @@ autoCompleteJS.input.addEventListener("selection", function(event) {
                 }
             }
 
-            //saving needs to be in this function(?) otherwise it gets refreshed everytime the page is refreshed
+            
             localStorage.setItem('favMovies',JSON.stringify(favMovies));
             console.log(JSON.parse(localStorage.getItem('favMovies')));
 
-
-            console.log('Form data saved to local storage');
             renderSaved();
-            //console.log(formData);
+
 });
 
         
     });
     addExist_container.classList.remove("hidden");
 })
-
-// localStorage.setItem('favMovies',JSON.stringify(favMovies));
-// console.log(localStorage.getItem('favMovies'));
-// console.log(JSON.parse(localStorage.getItem('favMovies')));
-
-
-// updateFavourites();
-
-// function updateFavourites() {
-//     let list = document.querySelector('favMovies ul');
-//     list.innerHTML = "";
-
-//     let favMovies = JSON.parse(localStorage.getItem('favMovies'));
-
-//     if (favMovies !== null) {
-//         favMovies.forEach((title)=> {
-//             let listItem = document.document.createElement('li');
-//             listItem.innerHTML = `<strong>${movie.title}</strong>`
-//             list.appendChild(listItem);
-//         })
-//     }
-// }
-
 
 // set max date as today
 var today = new Date();
@@ -310,27 +298,45 @@ document.getElementById("release").setAttribute("max",today);
 // access html form element
 const form = document.getElementById('saveManaullyForm');
 
-// listen for form submission
+//listen for form submission
 form.addEventListener('submit', function(event) {
     event.preventDefault();
 
     //get input data
     const title = document.getElementById('title').value;
-    const genre = document.getElementById('genres').value;
+    const genre = document.getElementById('genre').value;
+    const release = document.getElementById('release').value;
+    const rating = document.getElementById('rate_man').value;
+    const about = document.getElementById('movieAbout').value;
+    const poster = document.getElementById('poster').value;
 
-    const formData = {
+    const movie = {
         title: title,
-        genre: genre
+        genre: genre,
+        release: release,
+        rating: rating,
+        about: about,
+        poster: poster
     }
 
-    localStorage.setItem('formData', JSON.stringify(formData));
+    if (favMovies == null) {
+        favMovies = [movie]
+    } else {
+        if (favMovies.find(element =>element.title === movie.title)) {
+            console.log('This movie is already saved')
+    } else {
+        favMovies.push(movie)
+        }
+    }
+
+    console.log(JSON.parse(localStorage.getItem('favMovies')));
     
     // reset input
-    document.getElementById('nameInput').value = '';
-    document.getElementById('messageInput').value = '';
+    // document.getElementById('nameInput').value = '';
+    // document.getElementById('messageInput').value = '';
 
-    console.log('Form data saved to local storage');
-    console.log(formData);
+    // console.log('Form data saved to local storage');
+    // console.log(formData);
 });
 
 
