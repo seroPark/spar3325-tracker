@@ -45,10 +45,11 @@ function hideSearchBar(event) {
     var targetElement = event.target;
   
     // Check if the click target is outside of the search container and search button
-    if (searchContainer && !searchContainer.contains(targetElement) && !addButton.contains(targetElement)) {
+    if (!searchContainer.classList.contains("hidden") && !searchContainer.contains(targetElement) && !addButton.contains(targetElement)) {
       searchContainer.classList.add("hidden");
       document.removeEventListener("click", hideSearchBar);
       overlay.style.display = "none";
+      console.log("debug");
     }
   }
 
@@ -66,7 +67,7 @@ function closePopUp() {
 // set max date as today
 var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth(); + 1;
+var mm = today.getMonth() + 1;
 var yyyy = today.getFullYear();
 
 if (dd < 10) {
@@ -78,11 +79,12 @@ if (mm < 10) {
 }
 
 today = yyyy + '-' + mm + '-' + dd;
+// console.log(mm);
 document.getElementById("release").setAttribute("max",today);
 
 // save manually
 // access html form element
-const form = document.getElementById('saveManaullyForm');
+const form = document.getElementById('saveManuallyForm');
 
 //listen for form submission
 form.addEventListener('submit', function(event) {
@@ -90,18 +92,24 @@ form.addEventListener('submit', function(event) {
 
     //get input data
     const title = document.getElementById('title').value;
-    const genre = document.getElementById('genre').value;
+    var genre = document.getElementById('genre').value;
     const release = document.getElementById('release').value;
     const rating = document.getElementById('rate_man').value;
     const about = document.getElementById('movieAbout').value;
     const poster = document.getElementById('poster').value;
 
+    genre = genre.split(",").map(function(item) {
+        return item.trim();
+    })
+    genre = genre.join('      ');
+
     const movie = {
         title: title,
         genre: genre,
-        release: release,
+        released: release,
         rating: rating,
-        about: about,
+        added: today,
+        synopsis: about,
         poster: poster
     }
 
@@ -115,7 +123,11 @@ form.addEventListener('submit', function(event) {
         }
     }
 
-    console.log(JSON.parse(localStorage.getItem('favMovies')));
+    localStorage.setItem('favMovies',JSON.stringify(favMovies));
+    JSON.parse(localStorage.getItem('favMovies'));
+    
+    renderSaved();
+    overlay.style.display = "none";
     
     // reset input
     // document.getElementById('nameInput').value = '';
