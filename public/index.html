@@ -31,22 +31,22 @@
 
     <div id="movieInfo_container" class="hidden">
         <span>
-            <img src="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg" height = 300vh>
+            <img id="info_poster" src="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg" height = 200vh>
         </span>
         <span>
             <!-- edit text html element in js script using stored data -->
-            <h2 id="title">Title</h2>
-            <h6 id="genre">Genre</h6>
-            <p id="rating">x x x x x</p>
+            <h2 id="info_title">Title</h2>
+            <h6 id="info_genre">Genre</h6>
+            <p id="info_rating">x x x x x</p>
 
-            <label id="released">released date</label>
-            <p id="released">released date</p>
+            <label id="released">Release Date</label>
+            <p id="info_released">released date</p>
 
-            <label id="added">added date</label>
-            <p id="added">added date</p>
+            <label id="added">Added Date</label>
+            <p id="info_added">added date</p>
 
-            <label id="synopsis">synopsis</label>
-            <p id="synopsis">synopsis</p>
+            <label id="about">About</label>
+            <p id="info_about">About</p>
 
             <div class="button_container">
                 <button type="button" id="edit_button">Edit</button>
@@ -67,7 +67,7 @@
         <form>
             <p>Are you sure you want to cancel?</p>
             <div class="button_container">
-                <button type="submit" id="yes_button">Yes</button>
+                <button type="submit" id="yes_button" onclick="closePopup()">Yes</button>
                 <button type="button" id="no_button" onclick="closeConfirm()">No</button>
             </div>
         </form>
@@ -86,9 +86,21 @@
                 <h2>Title</h2>
                 <h6>Genre</h6>
                 <label for="rate" name="rate_exist">User Rating</label>
-                <input type="number" id="rate_exist">
+                <select name="rating" id="rate_exist">
+                    <option value="0">0.0</option>
+                    <option value="0.5">0.5</option>
+                    <option value="1">1.0</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2.0</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3">3.0</option>
+                    <option value="3.5">3.5</option>
+                    <option value="4">4.0</option>
+                    <option value="4.5">4.5</option>
+                    <option value="5">5.0</option>
+                </select>
                 <div class="button_container">
-                    <button type="submit" id="save_button">Save</button>
+                    <button type="submit" id="save_button" onclick="closePopUp()">Save</button>
                     <button type="button" id="cancel_button" onclick="askConfirm()">Cancel</button>
                 </div>
             </span>
@@ -99,17 +111,17 @@
     <div id = "addMan_container" class="addMovie hidden">
         <h2>Add New</h2>
         <form id="saveManuallyForm">
-            <label for="title" name="title" >Film Title</label>
+            <label for="title" name="title" >Movie Title</label>
             <input type="text" id="title" required>
 
             <!-- https://codepen.io/peiche/pen/dRqLbp -->
             <label for="genre">Genre</label>
-            <input type="text" name="genre" class="genre_keywords" plcaeholder="Type in Keywords">
+            <input type="text" name="genre" id = "genre" class="genre_keywords" plcaeholder="Type in Keywords">
             <small>Separate keywords with a comma, space bar, or enter key</small>
             <label for="start">Release Date</label>
             <input type="date" id="release" name="releaseDate" min="1980-01-01" max="2024-01-01">
             <label for="rating">User Rating</label>
-            <select name="rating" id="rating">
+            <select name="rating" id="rate_man">
                 <option value="0">0.0</option>
                 <option value="0.5">0.5</option>
                 <option value="1">1.0</option>
@@ -128,7 +140,7 @@
             <input type="text" id="poster" required>
               
             <div class="button_container">
-                <button type="submit" id="save_button" onclick="saveManually()">Save</button>
+                <button type="submit" id="save_button" onclick="closePopUp()">Save</button>
                 <button type="button" id="cancel_button" onclick="askConfirm()">Cancel</button>
             </div>
         </form>
@@ -138,18 +150,8 @@
     <div class="grid_container">
         <div class="grid_item">
             <!-- <img src ="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg"> -->
-            <div class="movieTile_content">
-                <h4 id="movieTile">Movie Title</h4>
-                <p id="movieTile">User Rating</p>
-            </div>
+        
         </div>
-    </div>
-
-    <div class="favMovies">
-        <h2>Favourites</h2>
-        <ul>
-            <!-- made in js local storage -->
-        </ul>
     </div>
 
 
