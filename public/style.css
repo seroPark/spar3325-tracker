@@ -100,7 +100,7 @@ header {
     margin-right: 5px;
 }
 
-#delete_button {
+.delete_button {
     background-color: #ffffff;
     color: black;
     padding: 10px 20px;
