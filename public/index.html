@@ -52,7 +52,7 @@
 
             <div class="button_container" style="height: 15%;">
                 <button type="button" id="edit_button">Edit</button>
-                <button type="button" class="delete_button">Delete</button>
+                <button type="button" id="no_button" onclick="askDelete()">Delete</button>
             </div>
         </div>
     </div>
@@ -64,18 +64,27 @@
     </div>
 
 
-    <!-- ASK FOR CONFIRMATION WINDOW CONTAINER -->
-    <div id = "askConfirm_container" class="addMovie hidden popup">
+    <!-- ASK FOR CANCEL CONFIRMATION WINDOW CONTAINER -->
+    <div id = "askCancel_container" class="addMovie hidden popup">
         <form>
             <p>Are you sure you want to cancel?</p>
             <div class="button_container">
                 <button type="submit" id="yes_button" onclick="closePopup()">Yes</button>
-                <button type="button" id="no_button" onclick="closeConfirm()">No</button>
+                <button type="button" id="no_button" onclick="closeCancel()">No</button>
             </div>
         </form>
     </div>
 
-
+    <!-- ASK FOR DELETE CONFIRMATION WINDOW CONTAINER -->
+    <div id = "askDelete_container" class="hidden popup">
+        <form>
+            <p>Are you sure you want to delete?</p>
+            <div class="button_container">
+                <button type="submit" id="yes_button" class="delete_button" onclick="closePopup()">Yes</button>
+                <button type="button" id="no_button" onclick="closeDelete()">No</button>
+            </div>
+        </form>
+    </div>
     
 
     <!-- ADD AUTOMATICALLY WINDOW CONTAINER  -->
@@ -103,7 +112,7 @@
                 </select>
                 <div class="button_container">
                     <button type="submit" id="save_button" onclick="closePopUp()">Save</button>
-                    <button type="button" id="cancel_button" onclick="askConfirm()">Cancel</button>
+                    <button type="button" id="cancel_button" onclick="askCancel()">Cancel</button>
                 </div>
             </span>
         </form>
@@ -143,7 +152,7 @@
               
             <div class="button_container">
                 <button type="submit" id="save_button" onclick="closePopUp()">Save</button>
-                <button type="button" id="cancel_button" onclick="askConfirm()">Cancel</button>
+                <button type="button" id="cancel_button" onclick="askCancel()">Cancel</button>
             </div>
         </form>
     </div>

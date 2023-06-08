@@ -131,7 +131,23 @@ header {
     font-family: 'League Spartan', sans-serif;
 }
 
-#askConfirm_container {
+#askCancel_container {
+    width: 350px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    z-index: 9999;
+}
+
+#askDelete_container {
     width: 350px;
     position: fixed;
     top: 50%;
@@ -288,6 +304,16 @@ header {
 }
 
 #cancel_button {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    border: black;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'League Spartan', sans-serif;
+}
+
+.delete_button {
     background-color: #ffffff;
     color: black;
     padding: 10px 20px;

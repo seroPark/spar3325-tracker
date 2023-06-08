@@ -22,21 +22,42 @@ function toggleSearchBar() {
     }
 }
 
+const movieTile = document.getElementById('movieInfo_container');
+document.addEventListener('click', function(event) {
+    const targetElement = event.target;
+
+    if (!movieTile.classList.contains("hidden") && !movieTile.contains(targetElement)) {
+        movieTile.classList.add("hidden");
+        overlay.style.display = "none";
+    }
+});
+
 function showOverlay(){
     overlay.style.display = "block";
   }
 
-function askConfirm() {
-    var confirmWindow = document.getElementById("askConfirm_container");
+function askCancel() {
+    var cancelWindow = document.getElementById("askCancel_container");
     //console.log("cancel?");
-    askConfirm_container.classList.remove("hidden");
+    askCancel_container.classList.remove("hidden");
     showOverlay();
 }
 
-function closeConfirm() {
-    var confirmWindow = document.getElementById("askConfirm_container");
+function closeCancel() {
+    var cancelWindow = document.getElementById("askCancel_container");
     console.log("no");
-    askConfirm_container.classList.add("hidden");
+    askCancel_container.classList.add("hidden");
+}
+
+function askDelete() {
+    var deleteWindow = document.getElementById("askDelete_container");
+    askDelete_container.classList.remove("hidden");
+    showOverlay();
+}
+
+function closeDelete() {
+    var deleteWindow = document.getElementById("askDelete_container");
+    askDelete_container.classList.add("hidden");
 }
 
 function hideSearchBar(event) {
@@ -51,7 +72,7 @@ function hideSearchBar(event) {
       overlay.style.display = "none";
       console.log("debug");
     }
-  }
+}
 
 function addManually() {
     addMan_container.classList.remove("hidden");
@@ -130,8 +151,7 @@ form.addEventListener('submit', function(event) {
     overlay.style.display = "none";
     
     // reset input
-    // document.getElementById('nameInput').value = '';
-    // document.getElementById('messageInput').value = '';
+    form.reset();
 
     // console.log('Form data saved to local storage');
     // console.log(formData);

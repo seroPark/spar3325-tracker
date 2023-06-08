@@ -50,16 +50,9 @@ function renderSaved() {
 
                 renderSaved();
 
-                //show areyou sure thingo
-                //document.get().class.remove(hidden)
+                
             })
-            // document.get("warning_container button").addEev('clicked', function() {
-                                // favMovies.splice(id, 1);
-                // localStorage.setItem('favMovies',JSON.stringify(favMovies));
-                // JSON.parse(localStorage.getItem('favMovies'));
-
-                // renderSaved();
-            //});
+            
         })
 
         
