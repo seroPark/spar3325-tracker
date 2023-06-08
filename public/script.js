@@ -1,14 +1,8 @@
-
+// Initiating Overlay
 const overlay = document.getElementById("overlay");
 
 
-
-// const delete_grid = document.getElementById('delete_button');
-// delete_grid.addEventListener('click', function() {
-
-// })
-
-
+// Opens and Closes the Search Bar & AutoComplete on click
 function toggleSearchBar() {
     var searchContainer = document.getElementById("autoComplete_container");
     searchContainer.classList.toggle("hidden");
@@ -22,17 +16,35 @@ function toggleSearchBar() {
     }
 }
 
+function hideSearchBar(event) {
+    var searchContainer = document.getElementById("autoComplete_container");
+    var addButton = document.getElementById("add_button");
+    var targetElement = event.target;
+  
+    // Check if the click target is outside of the search container and search button
+    if (!searchContainer.classList.contains("hidden") && !searchContainer.contains(targetElement) && !addButton.contains(targetElement)) {
+      searchContainer.classList.add("hidden");
+      document.removeEventListener("click", hideSearchBar);
+      overlay.style.display = "none";
+      console.log("debug");
+    }
+}
+
+
+// Closes movie info window when user clicks outside the window
 const movieTile = document.getElementById('movieInfo_container');
 overlay.addEventListener('click', function() {
-        if (!movieTile.classList.contains("hidden") && document.querySelector("#askDelete_container").classList.contains("hidden")) {
-            overlay.style.display = "none";
-            movieTile.classList.add("hidden");
-        }
-    });
+    if (!movieTile.classList.contains("hidden") && document.querySelector("#askDelete_container").classList.contains("hidden")) {
+        overlay.style.display = "none";
+        movieTile.classList.add("hidden");
+    }
+});
 
+
+// Pop up windows & overlay display
 function showOverlay(){
     overlay.style.display = "block";
-  }
+}
 
 function askCancel() {
     var cancelWindow = document.getElementById("askCancel_container");
@@ -58,20 +70,6 @@ function closeDelete() {
     askDelete_container.classList.add("hidden");
 }
 
-function hideSearchBar(event) {
-    var searchContainer = document.getElementById("autoComplete_container");
-    var addButton = document.getElementById("add_button");
-    var targetElement = event.target;
-  
-    // Check if the click target is outside of the search container and search button
-    if (!searchContainer.classList.contains("hidden") && !searchContainer.contains(targetElement) && !addButton.contains(targetElement)) {
-      searchContainer.classList.add("hidden");
-      document.removeEventListener("click", hideSearchBar);
-      overlay.style.display = "none";
-      console.log("debug");
-    }
-}
-
 function addManually() {
     addMan_container.classList.remove("hidden");
     autoComplete_container.classList.add("hidden");
@@ -83,7 +81,8 @@ function closePopUp() {
 }
 
 
-// set max date as today
+
+// Setting max date for release date (manual add) as today
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1;
@@ -98,18 +97,19 @@ if (mm < 10) {
 }
 
 today = yyyy + '-' + mm + '-' + dd;
-// console.log(mm);
 document.getElementById("release").setAttribute("max",today);
 
-// save manually
-// access html form element
+
+
+// Saving Movie Manually
+// When user inputs movie information manually and submits, data is saved into local stroage
 const form = document.getElementById('saveManuallyForm');
 
 //listen for form submission
 form.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    //get input data
+    //Get input data
     const title = document.getElementById('title').value;
     var genre = document.getElementById('genre').value;
     const release = document.getElementById('release').value;
@@ -117,11 +117,14 @@ form.addEventListener('submit', function(event) {
     const about = document.getElementById('movieAbout').value;
     const poster = document.getElementById('poster').value;
 
-    genre = genre.split(",").map(function(item) {
+    // For genre, users input multiple keywords
+    // seaparate the keywords and put in a the format used (same as automatically added genre data)
+    genre = genre.split(",").map(function(item) { 
         return item.trim();
     })
     genre = genre.join('      ');
 
+    // Save as object
     const movie = {
         title: title,
         genre: genre,
@@ -132,6 +135,8 @@ form.addEventListener('submit', function(event) {
         poster: poster
     }
 
+    // Add/Pushes the saved object into the saved movie list array
+    // If the movie already exists, it is not added again
     if (favMovies == null) {
         favMovies = [movie]
     } else {
@@ -145,14 +150,12 @@ form.addEventListener('submit', function(event) {
     localStorage.setItem('favMovies',JSON.stringify(favMovies));
     JSON.parse(localStorage.getItem('favMovies'));
     
+    // Displays the movie information as movie tiles on the main screen
     renderSaved();
     overlay.style.display = "none";
     
-    // reset input
+    // Reset so the input is not saved and shows up already filled out when the user goes to save the next movie
     form.reset();
-
-    // console.log('Form data saved to local storage');
-    // console.log(formData);
 });
 
 
