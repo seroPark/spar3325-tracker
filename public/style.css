@@ -15,11 +15,10 @@ h2 {
 }
 
 body {
-background-color: #f7f7f7;
-margin: 0;
-padding: 0;
-
-font-family: 'League Spartan', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    font-family: 'League Spartan', sans-serif;
 }
 
 header {
@@ -29,9 +28,10 @@ header {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) 
-    /* black shadow with opacity of 10% */
 }
 
+
+/* AUTO COMPLETE STYLING */
 #autoComplete_container {
     margin: 0;
     z-index: 9999;
@@ -47,13 +47,14 @@ header {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     align-items: center;
     justify-content: center;
-
 }
 
 #autoComplete {
     border: none;
 }
 
+
+/* LOGO STYLING */
 #logo_container {
     display: flex;
     align-items: center;
@@ -65,6 +66,7 @@ header {
     height: auto;
 }
 
+/* ADD BUTTON STYLING */
 #add_button {
     cursor: pointer;
     border: 1.5px solid;
@@ -84,6 +86,8 @@ header {
     background-color: #c5c5c5;
 }
 
+
+/* MOVIE INFO WINDOW STYLING */
 #movieInfo_container {
     display: flex;
     width: 60%;
@@ -131,6 +135,8 @@ header {
     font-family: 'League Spartan', sans-serif;
 }
 
+
+/* ASK FOR CONFIRMATION WINDOW STYLING */
 #askCancel_container {
     width: 350px;
     position: fixed;
@@ -163,18 +169,6 @@ header {
     z-index: 9999;
 }
 
-
-#manualAdd {
-    border: none;
-    font-family: 'League Spartan', sans-serif;
-    background-color: white;
-    font-size: 100%;
-    padding:20px;
-    border: none;
-    z-index: 9000;
-}
-
-
 #yes_button {
     background-color: black;
     color: white;
@@ -196,6 +190,18 @@ header {
     width: 40%;
     cursor: pointer;
     font-family: 'League Spartan', sans-serif;
+}
+
+
+ /* ADD MANUALLY WINDOW STYLING */ 
+#manualAdd {
+    border: none;
+    font-family: 'League Spartan', sans-serif;
+    background-color: white;
+    font-size: 100%;
+    padding:20px;
+    border: none;
+    z-index: 9000;
 }
 
 #addMan_container {
@@ -256,7 +262,7 @@ header {
 }
 
 
-
+/* ADD AUTOMATICALLY WINDOW STYLING */
 #addExist_container {
     width: 60vw;
     position: fixed;
@@ -286,7 +292,8 @@ header {
 }
 
 
-/*save and cancel button in pop up*/
+/* SAVE, CANCEL, DELETE BUTTON STYLING */
+
 .button_container {
     margin-top: 20px;
     margin-left: 20px;
@@ -323,7 +330,7 @@ header {
     font-family: 'League Spartan', sans-serif;
 }
 
-
+/* MAIN GRID STYLING */
 
 .grid_container {
     margin: 40px;
@@ -361,10 +368,40 @@ header {
 }
 
 
+/* RESPONSIVE DESIGN */
+
   @media (max-width: 600px) {
     .grid_container {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    #movieInfo_container {
+        display: inline-block;
+        height: 70vh !important;
+        width: auto;
+        position: fixed;
+        /* top: 20%;
+        left: 20%;
+        transform: translate(-20%, -20%); */
+        background-color: #f7f7f7;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        /* align-items: center;
+        justify-content: center; */
+        z-index: 9998;
+        overflow: scroll;
+    }
+
+    #info_poster {
+        height: 80%;
+    }
+
+    #info_info {
+        height: auto !important;
+        overflow:hidden !important;
+    }
+
   }
   
   @media (min-width: 601px) and (max-width: 900px) {
@@ -377,3 +414,4 @@ header {
 .hidden {
     display: none !important;
 }
+

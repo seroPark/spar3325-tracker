@@ -15,41 +15,45 @@
     <link href = "style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+    <!-- GREY OVERLAY FOR WHEN POPUP WINDOWS ARE OPEN -->
     <div class="overlay" id="overlay"></div>
     
-    <!-- top bar for logo and search -->
+
+    <!-- TOP BAR FOR LOGO AND ADD BUTTON -->
     <header>
-        <!-- add logo -->
+        <!-- Logo -->
         <div id = "logo_container">
             <img id = "logo" src="/Users/sera/Desktop/spar3325-tracker/public/assets/logo.png" alt="Film Log Logo">
         </div>
+        <!-- Add Button -->
         <button id = "add_button" onclick="toggleSearchBar()">
-            <img src="/Users/sera/Desktop/spar3325-tracker/public/assets/add.png" alt = "add button">
+            <img src="/Users/sera/Desktop/spar3325-tracker/public/assets/add.png" alt = "Add Dutton">
         </button>
     </header>
 
 
-    <!-- MOVIE INFO TILE CONTAINER -->
+    <!-- MOVIE INFO WINDOW CONTAINER -->
     <div id="movieInfo_container" class="hidden popup" style="height: 50vh;">
+         <!-- Movie poster -->
         <img id="info_poster" src="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg" height = '100%'>
+        <!-- Movie Information -->
         <div style="display: block; height: 100%; width: 100%;">
-            <div style="width: 100%; margin-left: 3%; height: 85%;overflow: scroll;">
-                <!-- edit text html element in js script using stored data -->
+            <div id = "info_info" style="width: 100%; margin-left: 3%; height: 85%;overflow: scroll;">
+                <!-- Dummy Placeholders : will be edited in script.js -->
                 <h2 id="info_title">Title</h2>
                 <h6 id="info_genre">Genre</h6>
                 <p id="info_rating">x x x x x</p>
 
                 <label for="info_released">Release Date</label>
-                <p id="info_released">released date</p>
+                <p id="info_released">Release date</p>
 
                 <label for="info_added">Added Date</label>
-                <p id="info_added">added date</p>
+                <p id="info_added">Added Date</p>
 
                 <label for="info_about">About</label>
                 <p id="info_about">About</p>
             </div>
-
+            <!-- Button to either edit or delete the movie -->
             <div class="button_container" style="height: 15%;">
                 <button type="button" id="edit_button">Edit</button>
                 <button type="button" id="no_button" onclick="askDelete()">Delete</button>
@@ -90,6 +94,7 @@
     <!-- ADD AUTOMATICALLY WINDOW CONTAINER  -->
     <div id = "addExist_container" class="hidden addMovie popup">
         <span>
+            <!-- Dummy placeholder image : will be eidted in renderSaved().js -->
             <img src="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg" height = 300vh>
         </span>
         <form id="addExistForm">
@@ -97,7 +102,7 @@
                 <h2>Title</h2>
                 <h6>Genre</h6>
                 <label for="rate" name="rate_exist">User Rating</label>
-                <select name="rating" id="rate_exist">
+                <select name="rating" id="rate_exist" required>
                     <option value="0">0.0</option>
                     <option value="0.5">0.5</option>
                     <option value="1">1.0</option>
@@ -118,21 +123,21 @@
         </form>
     </div>
     
+
     <!-- ADD MANUALLY WINDOW CONTAINER -->
     <div id = "addMan_container" class="addMovie hidden popup">
         <h2>Add New</h2>
-        <form id="saveManuallyForm">
+        <form id="saveManuallyForm" onsubmit="closePopUp()">
             <label for="title" name="title" >Movie Title</label>
             <input type="text" id="title" required>
 
-            <!-- https://codepen.io/peiche/pen/dRqLbp -->
             <label for="genre">Genre</label>
-            <input type="text" name="genre" id = "genre" class="genre_keywords" plcaeholder="Type in Keywords">
+            <input type="text" name="genre" id = "genre" class="genre_keywords" plcaeholder="Type in Keywords" required>
             <small>Separate keywords with a comma</small>
             <label for="start">Release Date</label>
-            <input type="date" id="release" name="releaseDate" min="1980-01-01" max="2024-01-01">
+            <input type="date" id="release" name="releaseDate" min="1980-01-01" max="2024-01-01" required>
             <label for="rating">User Rating</label>
-            <select name="rating" id="rate_man">
+            <select name="rating" id="rate_man" required>
                 <option value="0">0.0</option>
                 <option value="0.5">0.5</option>
                 <option value="1">1.0</option>
@@ -146,23 +151,21 @@
                 <option value="5">5.0</option>
             </select>
             <label for="about">About</label>
-            <textarea id="movieAbout" rows="4" cols="30"></textarea>
+            <textarea id="movieAbout" rows="4" cols="30" required></textarea>
             <label for="poster" name="poster" >Poster Thumbnail URL</label>
             <input type="text" id="poster" required>
               
             <div class="button_container">
-                <button type="submit" id="save_button" onclick="closePopUp()">Save</button>
+                <button type="submit" id="save_button">Save</button>
                 <button type="button" id="cancel_button" onclick="askCancel()">Cancel</button>
             </div>
         </form>
     </div>
 
 
+    <!-- MOVIE TILES (MAIN CONTAINER) -->
     <div class="grid_container">
-        <div class="grid_item">
-            <!-- <img src ="https://image.tmdb.org/t/p/original/vIeu8WysZrTSFb2uhPViKjX9EcC.jpg"> -->
-        
-        </div>
+        <div class="grid_item"></div>
     </div>
 
 
