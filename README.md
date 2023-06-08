@@ -139,59 +139,6 @@ Functions that were too big and complicated were taken out into separate .js fil
 
 More details written as comments in the file.
 
-
-## Development Process
-
-the development process, iterations, and improvements, with a strong emphasis on lessons learned and best practices.
-
-**1. Setting Up Code Repository**
-
-GitHub was used to set up a code repository as it allows easy version controls
-
-**2. Data Model**
-
-After setting up the code repository and syncing it with visual studio code, I started coding with the goal of achieving my design that I created for assignment 2.
-
-However, the api that I found did not have some of the data that I intended on using.
-
-I planned on fetching all the data shown below in my A2 data model
-
-```SCREENSHOT OF PDF DATAMODEL```
-
-I had to make changes to the types of information shown to the users.
-
-In the end, the list of move information/data that gets saved and shown to the users came to be:
-- Title
-- Genres
-- Poster Thumbnail (Image)
-- Release Date 
-- User Rating
-
-Date Added and ID were created using js, where date added fetches the date today and ID is the index of the movie in the favMovies() array.
-
-**3. Set up basic HTML** such as header, logo, buttons, pop up windows, etc.
-
-**4. Search Bar - Auto Complete Function**
-The search bar with auto complete function, as referenced, was sourced from a js vanilla library:
-
-```
-https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js
-
-```
-
-**5. Saving into Local Storage**
-
-Data fetched from the selection from the auto complete result list, or manually added data was saved into the local storage in the format of JSON.
-
-**6. Render Saved Items**
-
-Local storage data is displayed as movie tiles on the main screen with the function renderSaved().
-
-**7. Adding error prevention elements**
-
-For Add Movie windows and Movie info window, confirmation pop ups were added to make sure the data doesn't get discarded or deleted (or saved without proper user input) due to the user accidentally clicking on a save/cancel/delete button.
-
-
 ## Development Process (Log)
 
 the development process, iterations, and improvements, with a strong emphasis on lessons learned and best practices.
