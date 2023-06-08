@@ -23,14 +23,12 @@ function toggleSearchBar() {
 }
 
 const movieTile = document.getElementById('movieInfo_container');
-document.addEventListener('click', function(event) {
-    const targetElement = event.target;
-
-    if (!movieTile.classList.contains("hidden") && !movieTile.contains(targetElement)) {
-        movieTile.classList.add("hidden");
-        overlay.style.display = "none";
-    }
-});
+overlay.addEventListener('click', function() {
+        if (!movieTile.classList.contains("hidden") && document.querySelector("#askDelete_container").classList.contains("hidden")) {
+            overlay.style.display = "none";
+            movieTile.classList.add("hidden");
+        }
+    });
 
 function showOverlay(){
     overlay.style.display = "block";
